@@ -1,0 +1,24 @@
+# Compiler and flags
+CC = g++
+CFLAGS = -std=c++11 -Wall -I.
+LDFLAGS = -o
+
+# Source files
+SOURCES = main.cpp operations.cpp dataset.cpp sendIO.cpp
+HEADERS = operations.h
+
+# Target executable
+TARGET = main
+
+# Configuration
+include config.mk
+DEFINES = -DDATASET_FILE=$(DATASET_FILE) -DOP_FILE=$(OP_FILE) -DNUM_KEY_VALUE_PAIRS=$(NUM_KEY_VALUE_PAIRS) -DKEY_SIZE=$(KEY_SIZE) -DVALUE_SIZE=$(VALUE_SIZE) -DTOTAL_OPERATIONS=$(TOTAL_OPERATIONS) -DNUM_NODES=$(NUM_NODES) -DHOT_KEY_PERCENTAGE=$(HOT_KEY_PERCENTAGE) -DHOT_KEY_ACCESS_PERCENTAGE=$(HOT_KEY_ACCESS_PERCENTAGE) -DDISTRIBUTION_TYPE=$(DISTRIBUTION_TYPE)
+
+# Build rules
+all: $(TARGET)
+
+$(TARGET): $(SOURCES) $(HEADERS)
+	$(CC) $(CFLAGS) $(DEFINES) $(LDFLAGS) $(TARGET) $(SOURCES)
+
+clean:
+	rm -f $(TARGET)

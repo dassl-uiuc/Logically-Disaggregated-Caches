@@ -1,0 +1,7 @@
+numpy
+pyelftools
+matplotlib
+beautifulsoup4
+asyncssh
+lxml
+tqdm
