@@ -3,7 +3,7 @@
 # Shared configuration for all setup scripts.
 # Edit the USERNAME below and all scripts will pick it up.
 
-USERNAME_RAW="reviewer1"
+USERNAME_RAW="reviewer2"
 
 PROGRAM_PATH="sudo python3 setup.py"
 IDENTITY_FILE="--identity_file /users/${USERNAME_RAW}/.ssh/id_rsa"
