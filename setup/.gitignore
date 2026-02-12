@@ -7,3 +7,6 @@ backup_everything
 data_series_plot
 testing_data
 tmp
+plots
+metrics_summary.csv
+*.csv

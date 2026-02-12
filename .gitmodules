@@ -15,3 +15,12 @@
 [submodule "third_party/eRPC"]
 	path = third_party/eRPC
 	url = https://github.com/erpc-io/eRPC.git
+[submodule "LDC-RethinkDB"]
+	path = LDC-RethinkDB
+	url = https://github.com/KSTARK007/LDC-RethinkDB
+[submodule "CRAQ-KV"]
+	path = CRAQ-KV
+	url = https://github.com/KSTARK007/CRAQ-KV
+[submodule "LDC-SIM"]
+	path = LDC-SIM
+	url = https://github.com/KSTARK007/LDC-SIM
