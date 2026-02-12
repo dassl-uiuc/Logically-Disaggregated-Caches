@@ -26,9 +26,9 @@ We have already configured the CloudLab cluster for you. Please add a comment on
 - SSH key access configured on all nodes
 
 ## **Note for artifact evaluators**: 
-We have already configured the CloudLab cluster for you. Please add a comment so that we can provide access to the cluster. Once you have access to the machines, you can skip directly to [Kick the Tires](#kick-the-tires-artifacts-functional).
+We have already configured the CloudLab cluster for you. Please add a comment so that we can provide access to the cluster. Once you have access to the machines, you can skip directly to [Kick the Tires](#kick-the-tires-artifacts-functional). If you want to run the experiment on your own cluster, please follow the instructions below to setup the cluster.
 
-## Build Source Code
+## Build Source Code 
 
 ### Step 0: Setup CloudLab Cluster
 
@@ -100,7 +100,7 @@ cd /mydata/LDC/setup/
 
 ### Configure Username
 
-All scripts share a single configuration file. Edit `setup/env.sh` and set the username:
+All scripts share a single configuration file. Edit `setup/env.sh` and set the provided username (eg. reviewer1):
 
 ```bash
 # setup/env.sh
@@ -166,9 +166,3 @@ the plots are:
  - latency.png (latency vs cache size)
  - similarity.png (similarity vs cache size)
  - data_coverage.png (data coverage vs cache size)
-
-### Result File Format
-
-The result files are stored in the `setup/results/` directory.
-
-The result files are organized by workload type (e.g., `results/uniform/`, `results/zipfian_0.99/`).
