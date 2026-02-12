@@ -23,7 +23,7 @@ LDC (Logically Disaggregated Cache) is a new architecture for managing embedded 
 - Ubuntu 22.04 LTS (UBUNTU22-64-STD image on CloudLab)
 - SSH key access configured on all nodes
 
-> **Note for artifact evaluators**: The CloudLab environment is already pre-configured. You can skip directly to [Kick the Tires](#kick-the-tires-artifacts-functional).
+> **Note for artifact evaluators**: We have already configured the CloudLab cluster for you. please provide us with your public SSH key to access the cluster. After receiving the public SSH key, we will add it to the authorized_keys file on all the nodes. Once you have access to the machines, you can skip directly to [Kick the Tires](#kick-the-tires-artifacts-functional).
 
 ## Build Source Code
 
@@ -72,12 +72,20 @@ This generates YCSB traces for uniform, hotspot (80/20), and zipfian (0.99) dist
 
 ## Kick the Tires (Artifacts Functional)
 
+### Configure Username
+
+All scripts share a single configuration file. Edit `setup/env.sh` and set your CloudLab username:
+
+```bash
+# setup/env.sh
+USERNAME_RAW="your_cloudlab_username"
+```
 ### Running Experiments
 
 we run the following experiments:
- Cache Size: 0.10 and 0.334
- Workload: Uniform and Zipfian 0.99
- System: Baseline and LDC
+ - Cache Size: 10% and 33.4% of the dataset
+ - Workload Pattern: Uniform and Zipfian
+ - System: Baseline and LDC
 
 To run both the baseline and LDC systems, run the following script:
 
@@ -110,8 +118,10 @@ zipfian_0.99
 Change the CACHE_SIZE to the cache size you want to run it in the fraction of the dataset.
 To select the pattern of the workload, comment out the other workload patterns and uncomment the workload pattern you want to run. By default, both uniform and zipfian_0.99 are run.
 
-
 Results are stored under `setup/results/` organized by workload type (e.g., `results/uniform/`, `results/zipfian_0.99/`).
+
+Note: the experimient failures are handled by the script and the script will try to run the experiment again after it times out. So, if the experiment fails, please run the kill the process and run the script again.
+
 
 ### Analyzing Results
 
@@ -119,5 +129,19 @@ After experiments complete, use the analysis scripts to generate plots:
 
 ```bash
 cd setup/
-python klatency_all.py -d zipfian
+python compare_systems.py
 ```
+
+This will generate the plots in the `setup/plots/` directory.
+
+the plots are:
+ - throughput.png (throughput vs cache size)
+ - p50_latency.png (p50 latency vs cache size)
+ - similarity.png (similarity vs cache size)
+ - data_coverage.png (data coverage vs cache size)
+
+### Result File Format
+
+The result files are stored in the `setup/results/` directory.
+
+The result files are organized by workload type (e.g., `results/uniform/`, `results/zipfian_0.99/`).
