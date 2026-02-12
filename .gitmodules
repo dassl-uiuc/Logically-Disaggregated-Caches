@@ -1,0 +1,17 @@
+[submodule "third_party/machnet"]
+	path = third_party/machnet
+	url = https://github.com/microsoft/machnet
+[submodule "third_party/blkcache"]
+	path = third_party/blkcache
+	url = git@github.com:dassl-uiuc/blkcache.git
+	branch = replicated
+[submodule "third_party/RDMA"]
+	path = third_party/RDMA
+	url = git@github.com:dassl-uiuc/RDMA.git
+[submodule "third_party/YCSB"]
+	path = third_party/YCSB
+	url = git@github.com:dassl-uiuc/ycsb-tracegen
+	branch = sequential-keys
+[submodule "third_party/eRPC"]
+	path = third_party/eRPC
+	url = https://github.com/erpc-io/eRPC.git
