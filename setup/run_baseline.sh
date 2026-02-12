@@ -188,7 +188,7 @@ ACCESS_RATE=(1)
 
 
 
-CACHE_SIZE=(0.334)
-#uniform
+CACHE_SIZE=(0.10 0.334)
+uniform
 zipfian_0.99
 

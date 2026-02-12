@@ -49,7 +49,7 @@ for idx in "${!NODES[@]}"; do
 
     log "  ${node_name} (${host})..."
     ssh ${SSH_OPTS} -i "${ADMIN_KEY}" "${ADMIN_USER}@${host}" \
-        "sudo chmod -R 777 /mydata" \
+        "sudo chmod -R 777 /mnt/sda4/LDC" \
         && log "    Done" \
         || log "    FAILED on ${node_name}"
 done

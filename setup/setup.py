@@ -245,9 +245,11 @@ if __name__ == '__main__':
         except Exception as e:
             print(e)
             exit(-1)
-        
+        print(f'Soup:')
+
         done_sync = False
         async def run_on_node(i, conn, clients):
+            print(f'Running on node: {i}')
             async def run_command(command):
                 print(f'[{i}] [{conn._host}] Running {command}...')
                 try:
@@ -517,6 +519,7 @@ make -j
 ''')
 
             elif args.step == 'run' or args.step == 12:
+                print(f'Running step: {args.step}')
                 base_dir = '/mnt/sda4'
                 ldc_dir = f'{base_dir}/LDC'
                 build_dir = f'{base_dir}/LDC/build'
@@ -765,29 +768,39 @@ python {cal_latency_path} ./ >> run.log
             return True
         
         interfaces = list(soup.find_all('login'))
-        def get_ssh_endpoint(interface):
-            ssh_endpoint = f'{interface["username"]}@{interface["hostname"]}'
-            return ssh_endpoint
-        ssh_endpoints = [get_ssh_endpoint(interface) for interface in interfaces if args.username in interface["username"]]
+        tmp = set()
+        username_hostname = []
         def get_username_hostname(interface):
             username = interface['username']
             hostname = interface['hostname']
-            if args.username != username:
+            # print(f'Username: {username}')
+            # print(f'Hostname: {hostname}')
+            # if args.username != username:
+            #     return None
+            if hostname in tmp:
                 return None
-            return username, hostname
-        username_hostname = [get_username_hostname(interface) for interface in interfaces]
+            tmp.add(hostname)
+            return args.username, hostname
+        for interface in interfaces:
+            val = get_username_hostname(interface)
+            if val is not None:
+                username_hostname.append(val)
+        # print(f'Username hostname: {username_hostname}')
         cloudlab_password = ''
         p_key = asyncssh.read_private_key(identity_file, cloudlab_password)
-
         async def run_client(i, username_hostname, clients) -> asyncssh.SSHCompletedProcess:
             username = username_hostname[0]
             hostname = username_hostname[1]
+            print(f'Hostname: {hostname}')
+            print(f'Username: {username}')
             async with asyncssh.connect(host=hostname, username=username, port=22, client_keys=[p_key], known_hosts=None) as conn:
                 r = await run_on_node(i, conn, clients)
                 return r 
 
         async def run_multiple_clients() -> None:
             # Put your lists of hosts here
+            print(f'Running multiple clients')
+            print(f'Username hostname: {username_hostname}')
             clients = [u for u in username_hostname if u is not None]
             tasks = (run_client(i, c, clients) for i, c in enumerate(clients))
             #tasks = (run_client(u) for u in username_hostname[:5])

@@ -7,6 +7,8 @@ This repository contains the artifact for the paper **"A Logically Disaggregated
 
 LDC (Logically Disaggregated Cache) is a new architecture for managing embedded caches in replicated storage systems. Instead of each replica managing its cache in a silo, LDC disaggregates the embedded caches to form a single, unified, logical cache. LDC reduces cache redundancy from both reads (via one-sided RDMA to access remote caches) and writes (via selective quick demotions using a tiny queue). An online cost-benefit analyzer (CBA) balances cache coverage and redundancy.
 
+## **Note for artifact evaluators**: 
+We have already configured the CloudLab cluster for you. Please add a comment on hotcrp portal so that we can provide access to the cluster. Once you have access to the machines, you can skip directly to [Kick the Tires](#kick-the-tires-artifacts-functional).
 
 ## Prerequisites
 
@@ -23,7 +25,8 @@ LDC (Logically Disaggregated Cache) is a new architecture for managing embedded 
 - Ubuntu 22.04 LTS (UBUNTU22-64-STD image on CloudLab)
 - SSH key access configured on all nodes
 
-> **Note for artifact evaluators**: We have already configured the CloudLab cluster for you. Please add a comment so that we can provide access to the cluster. Once you have access to the machines, you can skip directly to [Kick the Tires](#kick-the-tires-artifacts-functional).
+## **Note for artifact evaluators**: 
+We have already configured the CloudLab cluster for you. Please add a comment so that we can provide access to the cluster. Once you have access to the machines, you can skip directly to [Kick the Tires](#kick-the-tires-artifacts-functional).
 
 ## Build Source Code
 
@@ -86,6 +89,15 @@ This generates YCSB traces for uniform, hotspot (80/20), and zipfian (0.99) dist
 
 ## Kick the Tires (Artifacts Functional)
 
+The main root directory for the artifact is `/mydata/LDC/`.
+
+### Configure the environment
+
+```bash
+cd /mydata/LDC/setup/
+./eval_init.sh
+```
+
 ### Configure Username
 
 All scripts share a single configuration file. Edit `setup/env.sh` and set the username:
@@ -94,6 +106,7 @@ All scripts share a single configuration file. Edit `setup/env.sh` and set the u
 # setup/env.sh
 USERNAME_RAW="<username>"
 ```
+
 ### Running Experiments
 
 we run the following experiments:
@@ -134,7 +147,7 @@ To select the pattern of the workload, comment out the other workload patterns a
 
 Results are stored under `setup/results/` organized by workload type (e.g., `results/uniform/`, `results/zipfian_0.99/`).
 
-Note: the experimient failures are handled by the script and the script will try to run the experiment again after it times out. So, if the experiment fails, please run the kill the process and run the script again.
+Note: the experimient failures are handled by the script and the script will try to run the experiment again after it times out. So, if the experiment is taking too long, please run the kill the process and run the script again.
 
 
 ### Analyzing Results
@@ -150,7 +163,7 @@ This will generate the plots in the `setup/plots/` directory.
 
 the plots are:
  - throughput.png (throughput vs cache size)
- - p50_latency.png (p50 latency vs cache size)
+ - latency.png (latency vs cache size)
  - similarity.png (similarity vs cache size)
  - data_coverage.png (data coverage vs cache size)
 
