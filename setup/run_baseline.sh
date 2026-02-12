@@ -2,7 +2,7 @@
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 source "$SCRIPT_DIR/env.sh"
-
+sudo rm -rf /mydata/LDC/setup/results/*
 
 # Function to execute the command
 execute_cmd_with_timeout() {
@@ -188,6 +188,7 @@ ACCESS_RATE=(1)
 
 
 
-CACHE_SIZE=(0.10 0.334)
-uniform
+CACHE_SIZE=(0.334)
+#uniform
 zipfian_0.99
+

@@ -8,9 +8,9 @@ import argparse
 import os
 
 parser = argparse.ArgumentParser(description='Auto-discover all result patterns, compare systems, and plot bar graphs')
-parser.add_argument("-r", "--results_dir", type=str, default="setup/results",
+parser.add_argument("-r", "--results_dir", type=str, default="results",
                     help="Root results directory (default: setup/results)")
-parser.add_argument("-o", "--output_dir", type=str, default="setup/plots",
+parser.add_argument("-o", "--output_dir", type=str, default="plots",
                     help="Root output directory for plots (default: setup/plots)")
 args = parser.parse_args()
 
@@ -258,9 +258,8 @@ def fmt_float(v):
 
 METRICS = [
     ('throughput',          'Throughput (ops/sec)',   'Throughput',          'throughput.png',          fmt_throughput),
-    ('p50_latency',         'P50 Latency (us)',      'P50 Latency',         'p50_latency.png',        fmt_latency),
+    ('p50_latency',         'Latency (us)',      'Latency',         'latency.png',        fmt_latency),
     ('similarity',          'Similarity',            'Similarity',          'similarity.png',          fmt_float),
-    ('data_coverage',       'Data Coverage',         'Data Coverage',       'data_coverage.png',      fmt_float),
 ]
 
 def plot_grouped_bars(systems_data, all_cache_sizes, pattern_name, output_dir):
