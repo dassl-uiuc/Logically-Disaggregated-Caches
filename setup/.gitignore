@@ -8,5 +8,6 @@ data_series_plot
 testing_data
 tmp
 plots
+generated_keys
 metrics_summary.csv
 *.csv

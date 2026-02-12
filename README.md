@@ -23,17 +23,31 @@ LDC (Logically Disaggregated Cache) is a new architecture for managing embedded 
 - Ubuntu 22.04 LTS (UBUNTU22-64-STD image on CloudLab)
 - SSH key access configured on all nodes
 
-> **Note for artifact evaluators**: We have already configured the CloudLab cluster for you. please provide us with your public SSH key to access the cluster. After receiving the public SSH key, we will add it to the authorized_keys file on all the nodes. Once you have access to the machines, you can skip directly to [Kick the Tires](#kick-the-tires-artifacts-functional).
+> **Note for artifact evaluators**: We have already configured the CloudLab cluster for you. Please add a comment so that we can provide access to the cluster. Once you have access to the machines, you can skip directly to [Kick the Tires](#kick-the-tires-artifacts-functional).
 
 ## Build Source Code
 
+### Step 0: Setup CloudLab Cluster
+
+Create a CloudLab experiment using the profile **small-lan** with the following parameters:
+
+![CloudLab Configuration](fig/cloudlab_config.png)
+
+- **Number of Nodes**: 7
+- **OS Image**: Ubuntu 22.04
+- **Physical Node Type**: xl170
+- **Temp Filesystem Max Space**: checked
+- **Temporary Filesystem Mount Point**: `/mydata`
+
+Click **Next**, then **Finalize**, and **Schedule** the experiment.
+
 ### Step 1: Configure Username
 
-All scripts share a single configuration file. Edit `setup/env.sh` and set your CloudLab username:
+All scripts share a single configuration file. Edit `setup/env.sh` and set the username:
 
 ```bash
 # setup/env.sh
-USERNAME_RAW="your_cloudlab_username"
+USERNAME_RAW="<username>"
 ```
 
 ### Step 2: Configure CloudLab Cluster
@@ -74,11 +88,11 @@ This generates YCSB traces for uniform, hotspot (80/20), and zipfian (0.99) dist
 
 ### Configure Username
 
-All scripts share a single configuration file. Edit `setup/env.sh` and set your CloudLab username:
+All scripts share a single configuration file. Edit `setup/env.sh` and set the username:
 
 ```bash
 # setup/env.sh
-USERNAME_RAW="your_cloudlab_username"
+USERNAME_RAW="<username>"
 ```
 ### Running Experiments
 
