@@ -120,7 +120,16 @@ To run both the baseline and LDC systems, run the following script:
 cd setup/
 ./run_all.sh
 ```
+---
+### **Note: the experimient failures are handled by the script and the script will try to run the experiment again after it times out.**
 
+**If the experiment is taking too long (more than 45 minutes), please run the kill_ldc.sh script to kill the process on the control node.**
+
+```bash
+cd setup/
+./kill_ldc.sh
+```
+---
 To run only the baseline system, run the following script:
 
 ```bash
@@ -147,13 +156,6 @@ To select the pattern of the workload, comment out the other workload patterns a
 
 Results are stored under `setup/results/` organized by workload type (e.g., `results/uniform/`, `results/zipfian_0.99/`).
 
-Note: the experimient failures are handled by the script and the script will try to run the experiment again after it times out. 
-
-If the experiment is taking too long (more than 45 minutes), please run the kill the process on the control node.
-to kill the process on the server and client nodes use `setup/kill_ldc.sh`.
-
-
-
 ### Analyzing Results
 
 After experiments complete, use the analysis scripts to generate plots:
@@ -171,31 +173,37 @@ the plots are:
  - similarity.png (similarity vs cache size)
  - data_coverage.png (data coverage vs cache size)
 
-
+---
 ### Cluster information of the setup provided to Evaluators
 
 3 client nodes:
-- Node 0: 10.10.1.1
-- Node 1: 10.10.1.2
-- Node 2: 10.10.1.3
+- node 0: 10.10.1.1
+- node 1: 10.10.1.2
+- node 2: 10.10.1.3
 
 3 server nodes:
-- Node 3: 10.10.1.4
-- Node 4: 10.10.1.5
-- Node 5: 10.10.1.6
+- node 3: 10.10.1.4
+- node 4: 10.10.1.5
+- node 5: 10.10.1.6
 
 Coordinator node:
-- Node 11: 10.10.1.12
+- node 11: 10.10.1.12
 
 Reserved for fault tolerance. not used in the experiment nodes
-- Node 6: 10.10.1.7
-- Node 7: 10.10.1.8
-- Node 8: 10.10.1.9
-- Node 9: 10.10.1.10
-- Node 10: 10.10.1.11
+- node 6: 10.10.1.7
+- node 7: 10.10.1.8
+- node 8: 10.10.1.9
+- node 9: 10.10.1.10
+- node 10: 10.10.1.11
 
+---
+### Checking Logs
 to check the logs of each node run the following command:
+
+Example: to check the logs of server node 3, run the following command:
+
 ```bash
-cd /mnt/sda4/LDC/setup/
+ssh node3
+cd /mnt/sda4/LDC/build/
 tail -f run.log
 ```

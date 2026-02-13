@@ -3,7 +3,7 @@
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 source "$SCRIPT_DIR/env.sh"
 sudo rm -rf /mydata/LDC/setup/results/*
-
+./kill_ldc.sh
 # Function to execute the command
 execute_cmd_with_timeout() {
     local num_clients=$1
