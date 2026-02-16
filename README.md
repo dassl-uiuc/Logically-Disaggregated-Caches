@@ -87,7 +87,12 @@ This will:
 
 This generates YCSB traces for uniform, hotspot (80/20), and zipfian (0.99) distributions in `/mydata/ycsb_traces/` and `/mydata/ycsb/`.
 
+
+---
+
 ## Kick the Tires (Artifacts Functional)
+
+**Login to the controller node (please refer to the comment added in HotCRP to find the controller node)**
 
 The main root directory for the artifact is `/mydata/LDC/`.
 
@@ -177,24 +182,17 @@ the plots are:
 ### Cluster information of the setup provided to Evaluators
 
 3 client nodes:
-- node 0: 10.10.1.1
-- node 1: 10.10.1.2
-- node 2: 10.10.1.3
+- node0: 10.10.1.1
+- node1: 10.10.1.2
+- node2: 10.10.1.3
 
 3 server nodes:
-- node 3: 10.10.1.4
-- node 4: 10.10.1.5
-- node 5: 10.10.1.6
+- node3: 10.10.1.4
+- node4: 10.10.1.5
+- node5: 10.10.1.6
 
 Coordinator node:
-- node 11: 10.10.1.12
-
-Reserved for fault tolerance. not used in the experiment nodes
-- node 6: 10.10.1.7
-- node 7: 10.10.1.8
-- node 8: 10.10.1.9
-- node 9: 10.10.1.10
-- node 10: 10.10.1.11
+- node6: 10.10.1.7
 
 ---
 ### Checking Logs
